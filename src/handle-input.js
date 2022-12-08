@@ -1,9 +1,10 @@
-/** @tutorial https://qna.habr.com/answer?answer_id=1587593 */
+import { InputError } from './error/input-error.js';
+
 const partOfCommandRegExp = /"([^"]+)"|([^ ]+)/g;
 
-async function handleInput(trimedInput) {
+function parseInput(trimedInput) {
   if (trimedInput.length === 0) {
-    return;
+    throw new InputError();
   }
 
   const matches = trimedInput.matchAll(partOfCommandRegExp);
@@ -18,7 +19,17 @@ async function handleInput(trimedInput) {
 
   const [commandName, ...commandArgs] = сommandParts;
 
-  console.log({ commandName, commandArgs });
+  return { commandName, commandArgs };
+}
+
+async function handleInput(trimedInput) {
+  try {
+    const { commandName, commandArgs } = parseInput(trimedInput);
+
+    console.log({ commandName, commandArgs });
+  } catch (reason) {
+    console.error(reason);
+  }
 }
 
 export { handleInput };
