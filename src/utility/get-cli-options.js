@@ -1,13 +1,13 @@
 const optionPrefix = '--';
 const optionSeparator = '=';
-const optionRegExp = RegExp(`^${optionPrefix}.+${optionSeparator}.+$`);
+const optionRegExp = new RegExp(`^${optionPrefix}.+${optionSeparator}.+$`);
 
 function getСliOptions() {
-  const { argv: cliArguments } = process;
+  const { argv: cliArgs } = process;
   const options = {};
 
-  for (let index = 2; index < cliArguments.length; index += 1) {
-    const optionСandidate = cliArguments[index];
+  for (let index = 2; index < cliArgs.length; index += 1) {
+    const optionСandidate = cliArgs[index];
 
     if (optionRegExp.test(optionСandidate)) {
       const [key, value] = optionСandidate.split(optionSeparator);
