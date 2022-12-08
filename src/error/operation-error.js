@@ -1,13 +1,7 @@
-import { CustomError } from './custom-error.js';
+import { AbstractCustomError } from './abstract-custom-error.js';
 
-class OperationError extends CustomError {
-  constructor(description) {
-    super(
-      `Operation failed${
-        typeof description === 'string' ? `. ${description}` : ''
-      }`
-    );
-  }
+class OperationError extends AbstractCustomError {
+  messagePrefix = 'Operation failed';
 }
 
 export { OperationError };

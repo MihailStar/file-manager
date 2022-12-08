@@ -1,13 +1,7 @@
-import { CustomError } from './custom-error.js';
+import { AbstractCustomError } from './abstract-custom-error.js';
 
-class InputError extends CustomError {
-  constructor(description) {
-    super(
-      `Invalid input${
-        typeof description === 'string' ? `. ${description}` : ''
-      }`
-    );
-  }
+class InputError extends AbstractCustomError {
+  messagePrefix = 'Invalid input';
 }
 
 export { InputError };
