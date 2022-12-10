@@ -1,11 +1,11 @@
+import { join } from 'path';
 import { AbstractExecutor } from './abstract-executor.js';
 
 class UpExecutor extends AbstractExecutor {
   async executor() {
-    console.log({
-      commandExecutor: this.constructor.name,
-      commandArgs: arguments,
-    });
+    const currentDir = process.cwd();
+
+    process.chdir(join(currentDir, './..'));
   }
 }
 
