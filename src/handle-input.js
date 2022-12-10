@@ -42,6 +42,7 @@ function handleError(reason) {
 
   if (isError(reason) && typeof reason.code === 'string') {
     console.error(new OperationError(`Code ${reason.code}`).message);
+    return;
   }
 
   console.error(new OperationError().message);
