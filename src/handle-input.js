@@ -1,6 +1,7 @@
 import { commandNameToExecutor } from './command-name-to-executor.js';
 import { InputError } from './error/input-error.js';
 import { OperationError } from './error/operation-error.js';
+import { EscapeCode } from './utility/escape-code.js';
 import { isError } from './utility/is-error.js';
 import { isKeyInObject } from './utility/is-key-in-object.js';
 
@@ -35,17 +36,19 @@ async function executeCommand(name, args) {
 }
 
 function handleError(reason) {
+  let message;
+
   if (reason instanceof InputError || reason instanceof OperationError) {
-    console.error(reason.message);
-    return;
+    message = reason.message;
+  } else if (isError(reason) && typeof reason.code === 'string') {
+    message = new OperationError(`Code ${reason.code}`).message;
+  } else {
+    message = new OperationError().message;
   }
 
-  if (isError(reason) && typeof reason.code === 'string') {
-    console.error(new OperationError(`Code ${reason.code}`).message);
-    return;
-  }
+  const coloredMessage = `${EscapeCode.RED}${message}${EscapeCode.RESET}`;
 
-  console.error(new OperationError().message);
+  console.error(coloredMessage);
 }
 
 async function handleInput(trimedInput) {
