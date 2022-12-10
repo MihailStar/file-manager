@@ -53,10 +53,10 @@ async function handleInput(trimedInput) {
     const { commandName, commandArgs } = parseInput(trimedInput);
 
     await executeCommand(commandName, commandArgs);
-
-    console.log(`You are currently in ${process.cwd()}`);
   } catch (reason) {
     handleError(reason);
+  } finally {
+    console.log(`You are currently in ${process.cwd()}`);
   }
 }
 
