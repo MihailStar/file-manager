@@ -1,12 +1,9 @@
-import { join } from 'path';
+import { getAbsolutePath } from '../utility/get-absolute-path.js';
 import { AbstractExecutor } from './abstract-executor.js';
 
 class UpExecutor extends AbstractExecutor {
   async executor() {
-    const currentWorkingDir = process.cwd();
-    const absolutePath = join(currentWorkingDir, './..');
-
-    process.chdir(absolutePath);
+    process.chdir(getAbsolutePath('./..'));
   }
 }
 
