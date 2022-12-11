@@ -54,9 +54,7 @@ class LsExecutor extends AbstractExecutor {
       return result;
     }, dirsAndFiles);
 
-    const list = dirsAndFiles.flat();
-
-    console.table(list);
+    console.table(dirsAndFiles.flat());
   }
 }
 
