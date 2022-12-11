@@ -4,8 +4,9 @@ import { AbstractExecutor } from './abstract-executor.js';
 class UpExecutor extends AbstractExecutor {
   async executor() {
     const currentWorkingDir = process.cwd();
+    const absolutePath = join(currentWorkingDir, './..');
 
-    process.chdir(join(currentWorkingDir, './..'));
+    process.chdir(absolutePath);
   }
 }
 
