@@ -1,4 +1,5 @@
-import { createReadStream, createWriteStream } from 'fs';
+import { createWriteStream } from 'fs';
+import { open } from 'fs/promises';
 import { basename, join } from 'path';
 import { pipeline } from 'stream/promises';
 import { createBrotliCompress } from 'zlib';
@@ -16,9 +17,9 @@ class CompressExecutor extends AbstractExecutor {
     const outputFileName = `${inputFileName}${compressorExt}`;
     const outputFilePath = join(outputDirPath, outputFileName);
 
-    const readStream = createReadStream(inputFilePath);
+    const readStream = (await open(inputFilePath)).createReadStream();
     const transformStream = createBrotliCompress();
-    const writeStream = createWriteStream(outputFilePath);
+    const writeStream = createWriteStream(outputFilePath, { flags: 'wx' });
 
     await pipeline(readStream, transformStream, writeStream);
   }

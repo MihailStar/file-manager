@@ -1,4 +1,5 @@
-import { createReadStream, createWriteStream } from 'fs';
+import { createWriteStream } from 'fs';
+import { open } from 'fs/promises';
 import { basename, join } from 'path';
 import { pipeline } from 'stream/promises';
 import { createBrotliDecompress } from 'zlib';
@@ -18,9 +19,9 @@ class DecompressExecutor extends AbstractExecutor {
       : inputFileName;
     const outputFilePath = join(outputDirPath, outputFileName);
 
-    const readStream = createReadStream(inputFilePath);
+    const readStream = (await open(inputFilePath)).createReadStream();
     const transformStream = createBrotliDecompress();
-    const writeStream = createWriteStream(outputFilePath);
+    const writeStream = createWriteStream(outputFilePath, { flags: 'wx' });
 
     await pipeline(readStream, transformStream, writeStream);
   }
