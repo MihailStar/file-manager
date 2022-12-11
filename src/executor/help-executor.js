@@ -1,8 +1,6 @@
 import { AbstractExecutor } from './abstract-executor.js';
 
-class HelpExecutor extends AbstractExecutor {
-  async executor() {
-    const commandList = `
+const commandList = `
 up
 cd <directory_path>
 ls
@@ -28,6 +26,8 @@ decompress <file_path> <directory_path>
 .exit
 `;
 
+class HelpExecutor extends AbstractExecutor {
+  async executor() {
     console.log(commandList.trim());
   }
 }
