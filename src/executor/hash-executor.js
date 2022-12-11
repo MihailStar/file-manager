@@ -6,8 +6,8 @@ import { AbstractExecutor } from './abstract-executor.js';
 
 class HashExecutor extends AbstractExecutor {
   async executor(filePath) {
-    const absolutePath = getAbsolutePath(filePath);
-    const readStream = createReadStream(absolutePath);
+    const inputFilePath = getAbsolutePath(filePath);
+    const readStream = createReadStream(inputFilePath);
     const transformStream = createHash('sha256');
 
     await pipeline(readStream, transformStream);
