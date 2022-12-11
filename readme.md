@@ -33,3 +33,9 @@ decompress <file_path> <file_path>
 
 .exit
 ```
+
+## Опции
+
+| Команда | Флаг                                                                                                      | Назначение            | Тип     | Умолчание |
+| ------- | --------------------------------------------------------------------------------------------------------- | --------------------- | ------- | --------- |
+| ls      | [isNameTruncated](https://github.com/MihailStar/node-bas-3/blob/master/02/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | false     |
