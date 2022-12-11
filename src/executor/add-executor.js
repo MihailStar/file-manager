@@ -1,11 +1,11 @@
+import { open } from 'fs/promises';
 import { AbstractExecutor } from './abstract-executor.js';
 
 class AddExecutor extends AbstractExecutor {
   async executor(filePath) {
-    console.log({
-      commandExecutor: this.constructor.name,
-      commandArgs: arguments,
-    });
+    const fileHandle = await open(filePath, 'wx');
+
+    await fileHandle.close();
   }
 }
 
