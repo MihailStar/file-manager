@@ -1,6 +1,8 @@
 import { AbstractExecutor } from './abstract-executor.js';
 
 const commandList = `
+help
+
 up
 cd <directory_path>
 ls
@@ -20,8 +22,8 @@ os --architecture
 
 hash <file_path>
 
-compress <file_path> <directory_path>
-decompress <file_path> <directory_path>
+compress <file_path> <file_path>
+decompress <file_path> <file_path>
 
 .exit
 `;
