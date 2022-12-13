@@ -5,6 +5,8 @@ import { EscapeCode } from './utility/escape-code.js';
 import { isError } from './utility/is-error.js';
 import { isKeyInObject } from './utility/is-key-in-object.js';
 
+const isErrorCodeOutput = true;
+
 const partOfCommandRegExp = /"([^"]+)"|([^ ]+)/g;
 
 function parseInput(trimedInput) {
@@ -40,7 +42,11 @@ function handleError(reason) {
 
   if (reason instanceof InputError || reason instanceof OperationError) {
     message = reason.message;
-  } else if (isError(reason) && typeof reason.code === 'string') {
+  } else if (
+    isErrorCodeOutput &&
+    isError(reason) &&
+    typeof reason.code === 'string'
+  ) {
     message = new OperationError(`Code ${reason.code}`).message;
   } else {
     message = new OperationError().message;
