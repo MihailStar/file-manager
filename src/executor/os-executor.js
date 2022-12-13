@@ -10,7 +10,7 @@ function getCpus() {
   console.table(
     cpus().map(({ model, speed: speedInMHz }) => ({
       model,
-      speedInGHz: speedInMHz / 1000,
+      speed: `${speedInMHz / 1000} GHz`,
     }))
   );
 }
