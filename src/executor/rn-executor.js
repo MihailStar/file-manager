@@ -9,7 +9,6 @@ class RnExecutor extends AbstractExecutor {
     const inputFilePath = getAbsolutePath(filePath);
     const outputFilePath = getAbsolutePath(newFilePath);
 
-    // rewrite to `isExistSync`
     if (await isExist(outputFilePath)) {
       throw new OperationError('Code EEXIST');
     }
