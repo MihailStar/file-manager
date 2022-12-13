@@ -1,4 +1,5 @@
 import { arch, cpus, EOL, homedir, userInfo } from 'os';
+import { isFunction } from '../utility/is-function.js';
 import { AbstractExecutor } from './abstract-executor.js';
 
 function getEOL() {
@@ -42,7 +43,7 @@ class OsExecutor extends AbstractExecutor {
   validateArgs(...args) {
     if (
       super.validateArgs(...args) &&
-      args.every((arg) => typeof optionToFunction[arg] === 'function')
+      args.every((arg) => isFunction(optionToFunction[arg]))
     ) {
       return true;
     }
