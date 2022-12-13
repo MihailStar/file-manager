@@ -20,6 +20,7 @@ function truncateName(name, type, maxLength = 50) {
   if (type === 'file') {
     const ext = extname(name);
     const nameWithoutExt = basename(name, ext);
+
     const truncationLength = maxLength - postfix.length - ext.length;
     const truncatedNameWithoutExt = nameWithoutExt.slice(0, truncationLength);
 

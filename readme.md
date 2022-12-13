@@ -28,8 +28,8 @@ os --architecture
 
 hash <file_path>
 
-compress <file_path> <directory_path>
-decompress <file_path> <directory_path>
+compress <file_path> <file_path>
+decompress <file_path> <file_path>
 
 .exit
 ```
@@ -38,4 +38,4 @@ decompress <file_path> <directory_path>
 
 | Команда | Флаг                                                                                                      | Назначение            | Тип     | Умолчание |
 | ------- | --------------------------------------------------------------------------------------------------------- | --------------------- | ------- | --------- |
-| ls      | [isNameTruncated](https://github.com/MihailStar/node-bas-3/blob/master/02/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | true      |
+| ls      | [isNameTruncated](https://github.com/MihailStar/file-manager/blob/master/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | true      |
