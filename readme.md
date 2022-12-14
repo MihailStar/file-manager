@@ -1,7 +1,9 @@
 # Учебные задания «Разработка на Node.js». File Manager
 
+## Запуск
+
 ```bash
-npm start -- --username=<your_username>
+npm run start -- --username=<your_username>
 ```
 
 ## Команды
