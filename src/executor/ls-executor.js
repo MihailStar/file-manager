@@ -37,6 +37,12 @@ class LsExecutor extends AbstractExecutor {
   async executor() {
     const currentWorkingDir = process.cwd();
     const dirents = await readdir(currentWorkingDir, { withFileTypes: true });
+
+    if (dirents.length === 0) {
+      console.log('Empty directory');
+      return;
+    }
+
     const dirsAndFilesAndAnother = [[], [], []];
 
     dirents.reduce((result, dirent) => {
