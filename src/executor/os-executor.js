@@ -7,8 +7,12 @@ function getEOL() {
 }
 
 function getCpus() {
+  const cores = cpus();
+
+  console.log(`${cores.length} logical CPU cores`);
+
   console.table(
-    cpus().map(({ model, speed: speedInMHz }) => ({
+    cores.map(({ model, speed: speedInMHz }) => ({
       model,
       speed: `${speedInMHz / 1000} GHz`,
     }))
