@@ -33,6 +33,12 @@ function truncateName(name, type, maxLength = 50) {
   return `${truncatedName}${postfix}`;
 }
 
+const typeToPosition = {
+  directory: 1,
+  file: 2,
+  another: 3,
+};
+
 class LsExecutor extends AbstractExecutor {
   async executor() {
     const currentWorkingDir = process.cwd();
@@ -43,30 +49,30 @@ class LsExecutor extends AbstractExecutor {
       return;
     }
 
-    const dirsAndFilesAndAnother = [[], [], []];
+    const items = dirents.map((dirent) => {
+      const type = dirent.isDirectory()
+        ? 'directory'
+        : dirent.isFile()
+        ? 'file'
+        : 'another';
+      const name = truncateName(dirent.name, type);
 
-    dirents.reduce((result, dirent) => {
-      if (dirent.isDirectory()) {
-        const type = 'directory';
-        const name = truncateName(dirent.name, type);
+      return { name, type };
+    });
 
-        result[0].push({ name, type });
-      } else if (dirent.isFile()) {
-        const type = 'file';
-        const name = truncateName(dirent.name, type);
-
-        result[1].push({ name, type });
-      } else {
-        const type = 'another';
-        const name = truncateName(dirent.name, type);
-
-        result[2].push({ name, type });
+    const sortedItems = items.sort((itemA, itemB) => {
+      if (typeToPosition[itemA.type] > typeToPosition[itemB.type]) {
+        return 1;
       }
 
-      return result;
-    }, dirsAndFilesAndAnother);
+      if (typeToPosition[itemA.type] < typeToPosition[itemB.type]) {
+        return -1;
+      }
 
-    console.table(dirsAndFilesAndAnother.flat());
+      return itemA.type.localeCompare(itemB.type);
+    });
+
+    console.table(sortedItems);
   }
 }
 
