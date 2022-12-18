@@ -1,9 +1,11 @@
-import { getAbsolutePath } from '../utility/get-absolute-path.js';
+import { posix } from 'path';
 import { AbstractExecutor } from './abstract-executor.js';
 
 class UpExecutor extends AbstractExecutor {
   async executor() {
-    process.chdir(getAbsolutePath('./..'));
+    const { sep: slash } = posix;
+
+    process.chdir(`.${slash}..`);
   }
 }
 

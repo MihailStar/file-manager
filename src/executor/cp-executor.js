@@ -3,13 +3,15 @@ import { open } from 'fs/promises';
 import { basename, join } from 'path';
 import { pipeline } from 'stream/promises';
 import { getAbsolutePath } from '../utility/get-absolute-path.js';
+import { getEndingSlashPath } from '../utility/get-ending-slash-path.js';
 import { AbstractExecutor } from './abstract-executor.js';
 
 class CpExecutor extends AbstractExecutor {
   async executor(filePath, dirPath) {
     const inputFileName = basename(filePath);
     const inputFilePath = getAbsolutePath(filePath);
-    const outputDirPath = getAbsolutePath(dirPath);
+    const dirPathWithEndingSlash = getEndingSlashPath(dirPath);
+    const outputDirPath = getAbsolutePath(dirPathWithEndingSlash);
     const outputFilePath = join(outputDirPath, inputFileName);
 
     const readStream = (await open(inputFilePath)).createReadStream();
