@@ -42,5 +42,5 @@ decompress <file_path> <file_path>
 
 | Команда | Флаг                                                                                                  | Назначение            | Тип     | Умолчание |
 | ------- | ----------------------------------------------------------------------------------------------------- | --------------------- | ------- | --------- |
-|         | [isErrorCodeOutput](https://github.com/MihailStar/file-manager/blob/dev/src/handle-input.ts#L8)       | Выводить коды ошибок  | boolean | true      |
-| ls      | [isNameTruncated](https://github.com/MihailStar/file-manager/blob/dev/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | true      |
+|         | [isErrorCodeOutput](https://github.com/MihailStar/file-manager/blob/dev/src/handle-input.js#L8)       | Выводить коды ошибок  | boolean | true      |
+| ls      | [isNameTruncated](https://github.com/MihailStar/file-manager/blob/dev/src/executor/ls-executor.js#L5) | Усекать длинные имена | boolean | true      |
