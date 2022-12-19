@@ -40,7 +40,7 @@ decompress <file_path> <file_path>
 
 ## Опции
 
-| Команда | Флаг                                                                                                     | Назначение            | Тип     | Умолчание |
-| ------- | -------------------------------------------------------------------------------------------------------- | --------------------- | ------- | --------- |
-|         | [isErrorCodeOutput](https://github.com/MihailStar/file-manager/blob/master/src/handle-input.ts#L8)       | Выводить коды ошибок  | boolean | true      |
-| ls      | [isNameTruncated](https://github.com/MihailStar/file-manager/blob/master/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | true      |
+| Команда | Флаг                                                                                                  | Назначение            | Тип     | Умолчание |
+| ------- | ----------------------------------------------------------------------------------------------------- | --------------------- | ------- | --------- |
+|         | [isErrorCodeOutput](https://github.com/MihailStar/file-manager/blob/dev/src/handle-input.ts#L8)       | Выводить коды ошибок  | boolean | true      |
+| ls      | [isNameTruncated](https://github.com/MihailStar/file-manager/blob/dev/src/executor/ls-executor.ts#L5) | Усекать длинные имена | boolean | true      |
